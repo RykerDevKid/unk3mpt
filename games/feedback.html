@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@unk3mpt utility</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="../../css/feedback.css">
+    <link rel="stylesheet" href="../css/feedback.css">
 </head>
 <body>
     <div class="content">
-        <h3>Feedback</h3>
+        <h3>Report Broken Game</h3>
         <form class="feedback">
             <input class="username" type="text" placeholder="Display Name">
             <input type="text" placeholder="Title of the game." required>
@@ -18,12 +18,12 @@
         <div class="column">
             <div class="column__item">
                 <h3>Go Back</h3>
-                <button class="button" onclick="document.location.href='../games'">Return to Previous</button>
+                <button class="button" onclick="document.location.href='../tools/games.html'">Return to Previous</button>
             </div>
         </div>
     </div>
-    <div class="popup-message">
-        <p>Thank you! Your feedback has been sent to my DMs.</p>
+    <div class="navbar">
+        <button onclick="document.location.href='../'" class="navbar__button">🏠</button>
     </div>
     <script type="module">
         const webhookUrl = 'https://discord.com/api/webhooks/1270944820013305856/ftPHNvTj2r_RtB1paykUYGF_pMgPgTGF80x7mxbZ3GfZzvA4BcnvY-xQsSYQK_N4LqRJ';
@@ -32,24 +32,52 @@
             xhr.open('POST', webhookUrl, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify({
-                'embeds': [{
-                    'title': 'User Feedback',
-                    'description': '> **Display Name**\n' + displayName + '\n\n> **Title of the game.**\n' + inputValue
-                }]
+                'embeds': [
+                    {
+                        "title": "User Feedback",
+                        color: null,
+                        "fields": [
+                            {
+                                "name": "Display Name",
+                                "value": displayName
+                            },
+                            {
+                                "name": "Game Title",
+                                "value": inputValue
+                            }
+                        ]
+                    }
+                ]
             }));
         }
         const inputSubmit = document.querySelector('.feedback > input[type="button"]');
+        function checkEmpty(field) {
+            if (field == "" ||
+                field == null ||
+                field == "undefined"){
+                    
+                return false;
+            }
+            else if (/^\s*$/.test(field)){
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
         inputSubmit.addEventListener('click', () => {
             const displayName = document.querySelector('.feedback > input[type="text"]:nth-child(1)');
             const textInput = document.querySelector('.feedback > input[type="text"]:nth-child(2)');
-            if (textInput.value === "") {
-                console.log('no value.');
+            if (!(checkEmpty(textInput.value))) {
+                alert('value empty.')
+                return false;
             } else {
                 if (displayName.value === "") {
                     sendRequest("Display name not provided.", textInput.value);
                 } else {
                     sendRequest(displayName.value, textInput.value);
                 }
+                return true;
             }
         });
     </script>
