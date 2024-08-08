@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@unk3mpt utility</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/feedback.css">
+</head>
+<body>
+    <div class="content">
+        <h3>Feedback</h3>
+        <form class="feedback">
+            <input class="username" type="text" placeholder="Display Name">
+            <input type="text" placeholder="Title of the game." required>
+            <input type="button" value="Submit" style="background: linear-gradient(135deg, #009189, #1900ff);">
+        </form>
+        <div class="column">
+            <div class="column__item">
+                <h3>Go Back</h3>
+                <button class="button" onclick="document.location.href='../games'">Return to Previous</button>
+            </div>
+        </div>
+    </div>
+    <div class="popup-message">
+        <p>Thank you! Your feedback has been sent to my DMs.</p>
+    </div>
+    <script type="module">
+        const webhookUrl = 'https://discord.com/api/webhooks/1270944820013305856/ftPHNvTj2r_RtB1paykUYGF_pMgPgTGF80x7mxbZ3GfZzvA4BcnvY-xQsSYQK_N4LqRJ';
+        function sendRequest(displayName, inputValue) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', webhookUrl, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                'embeds': [{
+                    'title': 'User Feedback',
+                    'description': '> **Display Name**\n' + displayName + '\n\n> **Title of the game.**\n' + inputValue
+                }]
+            }));
+        }
+        const inputSubmit = document.querySelector('.feedback > input[type="button"]');
+        inputSubmit.addEventListener('click', () => {
+            const displayName = document.querySelector('.feedback > input[type="text"]:nth-child(1)');
+            const textInput = document.querySelector('.feedback > input[type="text"]:nth-child(2)');
+            if (textInput.value === "") {
+                console.log('no value.');
+            } else {
+                if (displayName.value === "") {
+                    sendRequest("Display name not provided.", textInput.value);
+                } else {
+                    sendRequest(displayName.value, textInput.value);
+                }
+            }
+        });
+    </script>
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+        kofiWidgetOverlay.draw('rykersage', {
+            'type': 'floating-chat',
+            'floating-chat.donateButton.text': 'Support me',
+            'floating-chat.donateButton.background-color': '#d9534f',
+            'floating-chat.donateButton.text-color': '#fff'
+        });
+    </script>
+</body>
+</html>

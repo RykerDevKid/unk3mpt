@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@unk3mpt utility</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="content">
+        <img onclick="document.location.href='https://discord.gg/invite/etNp9puMkP'" src="assets/discord.png" width="250" height="250">
+        <h1>@unk3mpt utility</h1>
+        <p>psssst.. click the image above this text to join my discord.</p>
+        <p class="randomString">Loading fact..</p>
+        <button class="button" onclick="window.location.href='/tools'">Tools Page</button>
+    </div>
+    <p class="changelogs">
+        August 7th, 2024: Completely new UI, and new Tools Menu.
+    </p>
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+        kofiWidgetOverlay.draw('rykersage', {
+            'type': 'floating-chat',
+            'floating-chat.donateButton.text': 'Support me',
+            'floating-chat.donateButton.background-color': '#d9534f',
+            'floating-chat.donateButton.text-color': '#fff'
+        });
+    </script>
+    <script type="module">
+        const fact = fetch('https://uselessfacts.jsph.pl/api/v2/facts/random').then(fact => {
+            fact.json().then(fact => {
+                document.getElementsByClassName('randomString')[0].innerHTML = fact.text;
+            });
+        });
+    </script>
+</body>
+</html>
