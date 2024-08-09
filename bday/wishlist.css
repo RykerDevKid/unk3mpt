@@ -1,0 +1,116 @@
+/* FONT IMPORTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+.red-hat-display-bold700 {
+    font-family: "Red Hat Display", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* RESETS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Red Hat Display';
+    overflow: hidden;
+}
+
+/* SET DEFAULTS */
+body {
+    background: linear-gradient(135deg, #17191d 0%, #121418 100%);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* MAIN CSS */
+
+.content {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* ANIMATIONS */
+}
+
+.content .button {
+    background-color: transparent;
+    border: 4px solid #ffffff69;
+    color: rgba(255, 255, 255, 0.75);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+}
+
+.content .button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.content h1 {
+    background: linear-gradient(135deg, #ff3c00, #ff00ff, #ff0000);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 45px;
+}
+
+.content p {
+    font-size: 20px;
+    color: #363636;
+    text-align: left;
+}
+
+.content .content__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.content__list .list__item {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.15);
+    margin: 20px;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(154, 160, 185, .05), 0 5px 20px rgba(166, 173, 201, .2);
+}
+
+.list__item .item__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+.item__row .item__column {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.item__column h2 {
+    margin-bottom: 45px;
+    text-align: left;
+}
+
+.item__column p {
+    margin-bottom: 5px;
+    color: gold;
+}
+
+.list__item img {
+    width: 45%;
+    height: auto;
+}
